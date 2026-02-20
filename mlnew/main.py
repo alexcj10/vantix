@@ -126,9 +126,9 @@ def show_packages_list():
         print(f"    {cyan(pkg):<30} {dim(ver)}")
     print()
     print("  Override any package version with --pkg:")
-    print(f"    {dim('mlsetup init myproject --pkg numpy==1.24.0 --pkg pandas==2.0.0')}")
-    print(f"    {dim('mlsetup init myproject --pkg numpy==latest')}")
-    print(f"    {dim('mlsetup init myproject --pkg torch --pkg transformers')}")
+    print(f"    {dim('mlnew init myproject --pkg numpy==1.24.0 --pkg pandas==2.0.0')}")
+    print(f"    {dim('mlnew init myproject --pkg numpy==latest')}")
+    print(f"    {dim('mlnew init myproject --pkg torch --pkg transformers')}")
     print()
 
 
@@ -154,11 +154,11 @@ def create_project(project_name: str, packages: dict):
     for filepath, content in FILES.items():
         full_path = project_path / filepath
         full_path.parent.mkdir(parents=True, exist_ok=True)
-        full_path.write_text(content)
+        full_path.write_text(content, encoding="utf-8")
     step("Created required files  →  .gitignore, .env, config.yaml, train.py, eda.ipynb")
 
     # 4. Write SETUP_GUIDE.md (the full manual reference)
-    (project_path / "SETUP_GUIDE.md").write_text(generate_setup_guide())
+    (project_path / "SETUP_GUIDE.md").write_text(generate_setup_guide(), encoding="utf-8")
     step("Generated SETUP_GUIDE.md  →  full manual reference included")
 
     # 5. Create virtual environment
@@ -194,11 +194,11 @@ def create_project(project_name: str, packages: dict):
 
     # 8. Freeze requirements
     freeze_result = subprocess.run([pip, "freeze"], capture_output=True, text=True)
-    (project_path / "requirements.txt").write_text(freeze_result.stdout)
+    (project_path / "requirements.txt").write_text(freeze_result.stdout, encoding="utf-8")
     step("Saved requirements.txt  →  exact versions pinned")
 
     # 9. Write README
-    (project_path / "README.md").write_text(generate_readme(project_name, packages))
+    (project_path / "README.md").write_text(generate_readme(project_name, packages), encoding="utf-8")
     step("Generated README.md")
 
     # 10. Git init
@@ -241,7 +241,7 @@ def generate_readme(project_name: str, packages: dict) -> str:
     activate = r".venv\Scripts\Activate.ps1" if IS_WINDOWS else "source .venv/bin/activate"
     return f"""# {project_name}
 
-ML project scaffolded with [mlsetup](https://github.com/yourusername/mlsetup).
+ML project scaffolded with [mlnew](https://github.com/yourusername/mlnew).
 
 ## Setup
 
@@ -564,23 +564,23 @@ def main():
 
     if not args or args[0] in ("-h", "--help"):
         print()
-        print(bold("  mlsetup — ML Project Scaffolding CLI"))
+        print(bold("  mlnew — ML Project Scaffolding CLI"))
         print()
         print("  Usage:")
-        print(f"    {cyan('mlsetup init <project_name>')}              Create project with default packages")
-        print(f"    {cyan('mlsetup init <project_name> --pkg <spec>')} Override specific package versions")
-        print(f"    {cyan('mlsetup packages')}                         List default packages and versions")
-        print(f"    {cyan('mlsetup --version')}                        Show version")
+        print(f"    {cyan('mlnew init <project_name>')}              Create project with default packages")
+        print(f"    {cyan('mlnew init <project_name> --pkg <spec>')} Override specific package versions")
+        print(f"    {cyan('mlnew packages')}                         List default packages and versions")
+        print(f"    {cyan('mlnew --version')}                        Show version")
         print()
         print("  Examples:")
-        print(f"    {dim('mlsetup init my_project')}")
-        print(f"    {dim('mlsetup init my_project --pkg numpy==1.24.0 --pkg pandas==2.0.0')}")
-        print(f"    {dim('mlsetup init my_project --pkg numpy==latest --pkg torch')}")
+        print(f"    {dim('mlnew init my_project')}")
+        print(f"    {dim('mlnew init my_project --pkg numpy==1.24.0 --pkg pandas==2.0.0')}")
+        print(f"    {dim('mlnew init my_project --pkg numpy==latest --pkg torch')}")
         print()
         return
 
     if args[0] == "--version":
-        print("  mlsetup version 1.1.0")
+        print("  mlnew version 1.1.0")
         return
 
     if args[0] == "packages":
@@ -589,7 +589,7 @@ def main():
 
     if args[0] == "init":
         if len(args) < 2:
-            error("Please provide a project name.  Usage: mlsetup init <project_name>")
+            error("Please provide a project name.  Usage: mlnew init <project_name>")
         project_name = args[1]
         if not project_name.replace("_", "").replace("-", "").isalnum():
             error("Project name can only contain letters, numbers, hyphens, and underscores.")
@@ -605,7 +605,7 @@ def main():
         create_project(project_name, final_packages)
         return
 
-    error(f"Unknown command: '{args[0]}'. Run 'mlsetup --help' for usage.")
+    error(f"Unknown command: '{args[0]}'. Run 'mlnew --help' for usage.")
 
 
 if __name__ == "__main__":

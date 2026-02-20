@@ -1,17 +1,17 @@
-# mlsetup
+# mlnew
 
 One command ML project scaffolding CLI. Works on Windows, Mac, and Linux.
 
 ## Install
 
 ```bash
-pip install mlsetup
+pip install mlnew
 ```
 
 ## Usage
 
 ```bash
-mlsetup init project_name
+mlnew init project_name
 ```
 
 That single command will:
@@ -29,23 +29,23 @@ That single command will:
 
 ## Version Control
 
-By default mlsetup installs pinned, stable versions of every package. You can override any of them with `--pkg`.
+By default mlnew installs pinned, stable versions of every package. You can override any of them with `--pkg`.
 
 ```bash
 # Use all defaults
-mlsetup init my_project
+mlnew init my_project
 
 # Pin specific versions
-mlsetup init my_project --pkg numpy==1.24.0 --pkg pandas==2.0.0
+mlnew init my_project --pkg numpy==1.24.0 --pkg pandas==2.0.0
 
 # Install latest (no pin)
-mlsetup init my_project --pkg numpy==latest
+mlnew init my_project --pkg numpy==latest
 
 # Add a package not in the defaults
-mlsetup init my_project --pkg torch --pkg transformers
+mlnew init my_project --pkg torch --pkg transformers
 
 # Mix and match
-mlsetup init my_project --pkg numpy==1.24.0 --pkg torch --pkg transformers==4.40.0
+mlnew init my_project --pkg numpy==1.24.0 --pkg torch --pkg transformers==4.40.0
 ```
 
 ## Default Packages
@@ -66,7 +66,7 @@ mlsetup init my_project --pkg numpy==1.24.0 --pkg torch --pkg transformers==4.40
 See all defaults anytime:
 
 ```bash
-mlsetup packages
+mlnew packages
 ```
 
 ## Project Structure Created
@@ -114,11 +114,11 @@ python src/training/train.py
 ## All Commands
 
 ```bash
-mlsetup init <project_name>               Create project with default packages
-mlsetup init <project_name> --pkg <spec>  Override specific package versions
-mlsetup packages                          List all default packages and versions
-mlsetup --version                         Show version
-mlsetup --help                            Show help
+mlnew init <project_name>               Create project with default packages
+mlnew init <project_name> --pkg <spec>  Override specific package versions
+mlnew packages                          List all default packages and versions
+mlnew --version                         Show version
+mlnew --help                            Show help
 ```
 
 ## Requirements

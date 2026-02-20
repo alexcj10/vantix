@@ -1,4 +1,4 @@
-# ML Project Setup Guide
+# mlnew — ML Project Setup Guide
 A standard, reproducible setup process for Machine Learning and Data Science projects.
 
 
