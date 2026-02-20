@@ -8,6 +8,9 @@ One command ML project scaffolding CLI. Works on Windows, Mac, and Linux.
 pip install mlnew
 ```
 
+> **Tip**: Always run `pip install --upgrade mlnew` (or `pip install -U mlnew`) to ensure you have the latest version.
+> The upgrade flag can go before or after the package name.
+
 ## Usage
 
 ```bash
