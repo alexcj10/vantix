@@ -1,5 +1,5 @@
 <div align="center">
-<img src="assets/logo.svg" width="300" alt="mlnew">
+<img src="assets/logo.svg" width="400" alt="mlnew">
 
 <br>
 
