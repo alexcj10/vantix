@@ -104,14 +104,17 @@ project_name/
 
 ## 7. What Code Goes Where
 
-| File | Purpose |
-|:--|:--|
-| `build_features.py` | Transforms raw data before it reaches the model. Handle missing values, encode categoricals, normalize columns, create derived features. |
-| `model.py` | Model definition only. Define a neural network class, load an XGBoost model, or set up a scikit-learn pipeline. No training logic lives here. |
-| `train.py` | Main script you run to train. Loads data, calls feature engineering, trains the model, evaluates it, and saves it to disk. |
-| `predict.py` | Loads the saved trained model and runs predictions on new data. Called inside a FastAPI endpoint or a batch job. |
-| `config.yaml` | All settings that might change between runs. File paths, learning rate, epochs, model type — never hardcoded in Python. |
-| `notebooks/` | Exploration only. Once logic is finalized, move it into the appropriate `src/` file. Never imported by other code. |
+**build_features.py** – Cleans and transforms raw data, handles missing values, encodes categoricals, and creates features before modeling.
+
+**model.py** – Defines the model architecture or pipeline only. No training logic.
+
+**train.py** – Runs the training workflow: load data, build features, train, evaluate, and save the model.
+
+**predict.py** – Loads the trained model and generates predictions for new data or APIs.
+
+**config.yaml** – Stores all configurable parameters like paths, hyperparameters, and model settings.
+
+**notebooks/** – Used only for exploration and experiments; never imported into production code.
 
 ## 8. Create Required Files
 
@@ -241,4 +244,5 @@ deactivate
 | Never commit `.env` to GitHub |
 
 > Virtual environment isolates dependencies, `requirements.txt` guarantees reproducibility, and a clean folder structure keeps ML projects maintainable and production-ready from day one.
+
 
