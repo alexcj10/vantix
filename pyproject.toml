@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "mlsetup"
+version = "1.0.0"
+description = "One command ML project scaffolding CLI — works on Windows, Mac, and Linux."
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+keywords = ["machine-learning", "cli", "scaffold", "data-science", "project-template"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+[project.scripts]
+mlsetup = "mlsetup.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["mlsetup*"]
